@@ -13,13 +13,4 @@ router.get('/', function(req, res) {
   });
 });
 
-// create a new link
-router.post('/newlink', function(req, res) {
-  new link({
-    uri: req.body.content, updated_at : Date.now()
-  }).save(function(err, l, count){
-    res.redirect('/');
-  });
-});
-
 module.exports = router;

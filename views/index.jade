@@ -2,12 +2,13 @@ extends layout
 
 block content
   h1=title
-  form(action="/newlink", method="post", accept-charset="utf-8")
+  form(action="/links/create", method="post", accept-charset="utf-8")
     input(type="text", name="content")
     button(type="submit") Submit
 
   // use a loop to show all todo items at the very bottom.
   for link in links 
     p= link.uri
+    p= link.time
   else
     p No Links
