@@ -29,8 +29,7 @@ router.post('/delete/:id', function(req, res) {
 });
 
 // update link
-router.post('/edit/:id', function(req, res) {
-  console.log(req.params.id);
+router.post('/update/:id', function(req, res) {
   link.findById(req.params.id, function(err, l){
     l.uri =  req.body.uri; 
     l.time = req.body.time;
