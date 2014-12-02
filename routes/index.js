@@ -1,9 +1,25 @@
+var mongoose = require('mongoose');
+var link = mongoose.model('link');
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+// index
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  link.find(function(err, links, count){
+    res.render('index', {
+      title : 'Links',
+      links : links
+    });
+  });
+});
+
+// create a new link
+router.post('/newlink', function(req, res) {
+  new link({
+    uri: req.body.content, updated_at : Date.now()
+  }).save(function(err, l, count){
+    res.redirect('/');
+  });
 });
 
 module.exports = router;

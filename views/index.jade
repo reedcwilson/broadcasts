@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1=title
+  form(action="/newlink", method="post", accept-charset="utf-8")
+    input(type="text", name="content")
+    button(type="submit") Submit
+
+  // use a loop to show all todo items at the very bottom.
+  for link in links 
+    p= link.uri
+  else
+    p No Links
