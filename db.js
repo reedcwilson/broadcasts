@@ -25,4 +25,5 @@ var broadcast = new Schema({
 mongoose.model('link', link);
 mongoose.model('note', note);
 mongoose.model('broadcast', broadcast);
-mongoose.connect('mongodb://localhost/broadcasts');
+//mongoose.connect('mongodb://localhost/broadcasts');
+mongoose.connect('mongodb://nodejitsu:ad15d053df09b2a67eafb99ab581c1e6@troup.mongohq.com:10033/nodejitsudb1045838899');
