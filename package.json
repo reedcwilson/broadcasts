@@ -1,13 +1,13 @@
 {
   "name": "broadcasts",
-  "version": "0.0.0-2",
+  "version": "0.0.0-4",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "domains": [
     "broadcasts.reedcwilson.com",
-    "test.reedcwilson.com"
+    "cs360.reedcwilson.com"
   ],
   "dependencies": {
     "express": "~4.9.0",
@@ -18,7 +18,11 @@
     "debug": "~2.0.0",
     "jade": "~1.6.0",
     "stylus": "0.42.3",
-    "mongoose": "~3.8.20"
+    "mongoose": "~3.8.20",
+    "passport": "~0.2.1",
+    "passport-local": "~1.0.0",
+    "passport-oauth": "~1.0.0",
+    "angularjs": "0.0.1"
   },
   "subdomain": "reedcwilson-broadcasts",
   "engines": {
