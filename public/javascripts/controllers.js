@@ -1,7 +1,7 @@
-var app = angular.module('broadcastsApp', []);
+var app = angular.module('broadcastsApp', [ 'config' ]);
 
-app.controller('DashboardController', function ($scope, $http) {
-  $http.get('http://localhost:3000/broadcasts/')
+app.controller('DashboardController', function ($scope, $http, ENV) {
+  $http.get(ENV.root_uri + '/broadcasts/')
     .success(function(data) {
       $scope.broadcasts = data.broadcasts;
   });
