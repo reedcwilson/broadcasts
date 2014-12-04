@@ -14,6 +14,8 @@ router.get('/', function(req, res) {
 router.post('/create', function(req, res) {
   new broadcast({
     uri: req.body.uri, 
+    user_id: req.body.user_id,
+    name: req.body.name,
     last_update: Date.now()
   }).save(function(err, l, count){
     res.json({ success: "True" });
@@ -33,6 +35,8 @@ router.post('/delete/:id', function(req, res) {
 router.post('/update/:id', function(req, res) {
   broadcast.findById(req.params.id, function(err, b){
     b.uri =  req.body.uri; 
+    b.name = req.body.name;
+    b.user_id = req.body.user_id;
     b.last_update = Date.now();
     b.save(function(err, b, count){
       res.json({ success: "True" });

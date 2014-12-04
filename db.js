@@ -6,23 +6,24 @@ module.exports = function(env) {
 
   var link = new Schema({
     user_id       : String,
-      broadcast_id  : String,
-      uri           : String,
-      time          : Date
+    broadcast_id  : String,
+    uri           : String,
+    time          : Date
   });
 
   var note = new Schema({
     user_id       : String,
-      broadcast_id  : String,
-      content       : String,
-      last_update   : Date
+    broadcast_id  : String,
+    content       : String,
+    last_update   : Date
   });
 
   var broadcast = new Schema({
     broadcast_id  : String,
-      user_id       : String,
-      uri           : String,
-      last_update   : Date
+    user_id       : String,
+    name          : String,
+    uri           : String,
+    last_update   : Date
   });
 
   mongoose.model('link', link);

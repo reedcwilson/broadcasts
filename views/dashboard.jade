@@ -1,4 +1,10 @@
 extends layout
 
 block content
-  h1=title
+  div(ng-controller="DashboardController")
+    h1=title
+    table
+      tbody
+        tr(ng-repeat="broadcast in broadcasts")
+          td {{ broadcast.name }}
+          td {{ broadcast.last_update | date : "MMM d, yyyy h:mm a" }}
