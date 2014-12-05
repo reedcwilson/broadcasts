@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
 });
 
 // sign in
-router.get('/auth', function(req, res) {
+router.get('/login', function(req, res) {
     res.render('login');
 });
 

@@ -1,6 +1,6 @@
 
-./views/*.js
-./views/*.html
+views/*.js
+views/*.html
 
 ### Node ###
 # Logs

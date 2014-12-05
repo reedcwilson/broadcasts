@@ -18,7 +18,9 @@
     "debug": "~2.0.0",
     "jade": "~1.6.0",
     "stylus": "0.42.3",
-    "mongoose": "~3.8.20"
+    "mongoose": "~3.8.20",
+    "everyauth": "~0.4.9",
+    "connect": "~3.3.3"
   },
   "subdomain": "reedcwilson-broadcasts",
   "engines": {

@@ -1,7 +1,9 @@
 extends layout
 
 block content
-  p Sign in with Google
-  p Sign in with Twitter
-  p Sign in with Facebook
-  p Sign in with Github
+  - if (!everyauth.loggedIn)
+    #google-login
+      a(href='/auth/google', style='border: 0px')
+        img(style='border: 0px', src='https://www.google.com/favicon.ico')
+  - else
+    h1 you're logged in
