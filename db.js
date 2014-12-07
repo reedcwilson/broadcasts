@@ -26,9 +26,16 @@ module.exports = function(env) {
     last_update   : Date
   });
 
+  var user = new Schema({
+    auth_type     : String,
+    id            : String,
+    name          : String
+  });
+
   mongoose.model('link', link);
   mongoose.model('note', note);
   mongoose.model('broadcast', broadcast);
+  mongoose.model('user', user);
   if (env == 'development') {
     mongoose.connect('mongodb://localhost/broadcasts' );
   }
