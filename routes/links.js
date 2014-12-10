@@ -10,10 +10,23 @@ router.get('/', function(req, res) {
   });
 });
 
+// get links for broadcast
+router.get('/for', function(req, res) {
+  link.find({ broadcast_id: req.query.broadcast_id }, function(err, links) {
+    res.json({ links: links });
+  });
+});
+
 // create a new link
 router.post('/create', function(req, res) {
+  console.log(req.body.description);
   new link({
-    uri: req.body.uri, time : req.body.time
+    // TODO: if user is not logged in, don't allow
+    uri: req.body.uri, time : req.body.time,
+    user_id: req.user.id,
+    broadcast_id: req.body.broadcast_id,
+    description: req.body.description,
+    time: req.body.time
   }).save(function(err, l, count){
     res.json({ success: "True" });
   });

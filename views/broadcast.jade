@@ -1,4 +1,13 @@
 extends layout
 
 block content
-  h1=title
+  div(ng-controller="LinksController")
+    h1=title
+    table
+      tbody
+        tr(ng-repeat="link in links")
+          td: a(href="{{ link.uri }}") {{ link.description }}
+          td {{ link.time }}
+
+  div(ng-controller="VideoController")
+    iframe(width="1024", height="600", frameborder="0", allowfullscreen, src="{{ video.uri | trusted}}")

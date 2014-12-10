@@ -7,8 +7,9 @@ module.exports = function(env) {
   var link = new Schema({
     user_id       : String,
     broadcast_id  : String,
+    description   : String,
     uri           : String,
-    time          : Date
+    time          : String
   });
 
   var note = new Schema({

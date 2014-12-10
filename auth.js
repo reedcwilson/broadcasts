@@ -15,8 +15,8 @@ module.exports = function(app) {
 
   function findOrCreateUser(type, user, promise) {
     user_db.find({auth_type: type, id: user.id}, function(err, u) {
-      if (user && u.length > 0) {
-        promise.fulfill(u);
+      if (u && u.length > 0) {
+        promise.fulfill(u[0]);
       } else {
         new_user = new user_db({
           auth_type: type,
@@ -27,6 +27,7 @@ module.exports = function(app) {
           if (err) {
             promise.fulfill(err);
           } else {
+            new_user.id = new_user._id;
             promise.fulfill(new_user);
           }
         });
@@ -37,7 +38,9 @@ module.exports = function(app) {
 
   everyauth.everymodule
     .findUserById(function(id, callback) {
-      callback(null, usersById[id]);
+      callback(null, user_db.findById(id, function(err, u){
+        return u != null ? u : err;
+      }));
     });
 
   everyauth.debug = true;
