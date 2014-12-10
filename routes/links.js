@@ -19,7 +19,7 @@ router.get('/for', function(req, res) {
 
 // create a new link
 router.post('/create', function(req, res) {
-  console.log(req.body.description);
+  console.log(req.user.id);
   new link({
     // TODO: if user is not logged in, don't allow
     uri: req.body.uri, time : req.body.time,

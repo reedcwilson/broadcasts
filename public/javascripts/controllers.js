@@ -14,8 +14,16 @@ app.controller('LinksController', function($scope, $http) {
   });
 });
 
-app.controller('VideoController', function($scope, $http, $sce) {
+app.controller('VideoController', function($scope, $http) {
   $http.get('/broadcasts/' + '547fe734c80c16181d3c8b8a')
+    .success(function(data) {
+      console.log(data.uri);
+      $scope.video = data;
+  });
+});
+
+app.controller('NotesController', function($scope, $http) {
+  $http.get('/notes/' + '547fe734c80c16181d3c8b8a')
     .success(function(data) {
       console.log(data.uri);
       $scope.video = data;

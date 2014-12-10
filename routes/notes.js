@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var note = mongoose.model('note');
 var express = require('express');
 var router = express.Router();
+var everyauth = require('everyauth');
 
 // get notes
 router.get('/', function(req, res) {
@@ -10,10 +11,22 @@ router.get('/', function(req, res) {
   });
 });
 
+// get notes for user and broadcast
+router.get('/:id', function(req, res) {
+  note.find({user_id: req.user.id, broadcast_id: req.params.id}, function(err, note){
+    if (err || note.length < 1) {
+      res.json({ "error": err });
+    } else {
+      res.json(note[0]);
+    }
+  });
+});
+
 // create a new note
 router.post('/create', function(req, res) {
   new note({
     content: req.body.content, 
+    user_id: req.user.id,
     last_update: Date.now(), 
     broadcast_id: req.body.broadcast_id
   }).save(function(err, l, count){

@@ -29,7 +29,7 @@ module.exports = function(env) {
 
   var user = new Schema({
     auth_type     : String,
-    id            : String,
+    type_id       : String,
     name          : String
   });
 

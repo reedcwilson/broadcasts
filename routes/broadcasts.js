@@ -13,7 +13,6 @@ router.get('/', function(req, res) {
 // get by id
 router.get('/:id', function(req, res) {
   broadcast.findById(req.params.id, function(err, broadcast){
-    console.log(err);
     res.json(broadcast);
   });
 });
