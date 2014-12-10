@@ -19,16 +19,16 @@ router.get('/for', function(req, res) {
 
 // create a new link
 router.post('/create', function(req, res) {
-  console.log(req.user.id);
   new link({
     // TODO: if user is not logged in, don't allow
-    uri: req.body.uri, time : req.body.time,
+    uri: req.body.uri, 
+    time : req.body.time,
     user_id: req.user.id,
     broadcast_id: req.body.broadcast_id,
     description: req.body.description,
     time: req.body.time
   }).save(function(err, l, count){
-    res.json({ success: "True" });
+    res.json({ success: "True", id: l._id });
   });
 });
 

@@ -3,8 +3,20 @@ extends layout
 block content
   div(ng-controller="DashboardController")
     h1=title
+    h2 Create Broadcast
+    form
+      div(class="uk-form-row")
+        input(type="text", name="name", placeholder="Name", ng-model="createForm.name")
+      div(class="uk-form-row")
+        input(type="text", name="uri", placeholder="YouTube Link", ng-model="createForm.uri")
+      div(class="uk-form-row")
+        button(class="uk-button", ng-click="createForm.submit()") Create
+        button(class="uk-button", ng-click="createForm.submitAndOpen()") Open
+    h2 Broadcasts
     table
       tbody
         tr(ng-repeat="broadcast in broadcasts")
           td {{ broadcast.name }}
           td {{ broadcast.last_update | date : "MMM d, yyyy h:mm a" }}
+          td: button(class="uk-button") Edit
+          td: button(class="uk-button-danger", ng-click="delete(broadcast._id)") Delete

@@ -30,7 +30,7 @@ router.post('/create', function(req, res) {
     last_update: Date.now(), 
     broadcast_id: req.body.broadcast_id
   }).save(function(err, l, count){
-    res.json({ success: "True" });
+    res.json({ success: "True", id: l._id });
   });
 });
 

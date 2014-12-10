@@ -8,11 +8,6 @@ router.get('/', function(req, res) {
     res.render('index');
 });
 
-// sign in
-router.get('/login', function(req, res) {
-    res.render('login');
-});
-
 // dashboard
 router.get('/dashboard', function(req, res) {
   res.render('dashboard', {

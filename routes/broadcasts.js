@@ -21,11 +21,11 @@ router.get('/:id', function(req, res) {
 router.post('/create', function(req, res) {
   new broadcast({
     uri: req.body.uri, 
-    user_id: req.body.user_id,
     name: req.body.name,
+    user_id: req.user.id,
     last_update: Date.now()
   }).save(function(err, l, count){
-    res.json({ success: "True" });
+    res.json({ success: "True", id: l._id });
   });
 });
 

@@ -20,7 +20,6 @@ module.exports = function(env) {
   });
 
   var broadcast = new Schema({
-    broadcast_id  : String,
     user_id       : String,
     name          : String,
     uri           : String,

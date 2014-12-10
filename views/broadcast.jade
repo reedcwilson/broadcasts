@@ -2,6 +2,7 @@ extends layout
 
 block content
   div(ng-controller="LinksController")
+    h1(class="test") test
     h1=title
     table
       tbody
@@ -12,4 +13,7 @@ block content
   div(ng-controller="VideoController")
     iframe(width="1024", height="600", frameborder="0", allowfullscreen, src="{{ video.uri | trusted}}")
 
-  textarea(data-uk-htmleditor="{markdown:true}")
+  div(ng-controller="NotesController")
+    div(id='hidden-note') {{ note }}
+    populate-note
+      textarea(data-uk-htmleditor="{markdown:true}")

@@ -5,3 +5,10 @@ body {
 a {
   color: #00b7ff;
 }
+.layout-logo {
+  height: 200px;
+  width: auto;
+}
+#hidden-note {
+  display: none;
+}
