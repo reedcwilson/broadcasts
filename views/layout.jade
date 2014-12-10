@@ -3,21 +3,38 @@ html(ng-app='broadcastsApp')
   head
     title= title
 
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    // Latest compiled and minified CSS
-    link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
+    // uikit
+    link(rel='stylesheet', href='lib/uikit/css/uikit.min.css')
+    // local
+    link(rel='stylesheet', href='stylesheets/style.css')
+    // bootstrap
+    //-link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
 
-    //-script(src="/javascripts/angular.min.js")
-    script(src="/javascripts/angular.js")
+    // jquery
+    script(src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+    // angular
+    script(src="lib/angular/angular.js")
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js")
     script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.min.js")
-    script(src="/javascripts/controllers.js")
-    script(src="/javascripts/config.js")
+    // uikit
+    script(src="lib/uikit/js/uikit.min.js")
+    // bootstrap
+    //-script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
+    // local
+    script(src="javascripts/controllers.js")
+    script(src="javascripts/config.js")
 
-    //- Latest compiled and minified JavaScript
-    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
+    // Codemirror and marked dependencies
+    link(rel="stylesheet" href="lib/codemirror/lib/codemirror.css")
+    script(src="lib/codemirror/lib/codemirror.js")
+    script(src="lib/codemirror/mode/markdown/markdown.js")
+    script(src="lib/codemirror/addon/mode/overlay.js")
+    script(src="lib/codemirror/mode/xml/xml.js")
+    script(src="lib/codemirror/mode/gfm/gfm.js")
+    script(src="lib/marked/marked.js")
+
+    link(rel="stylesheet" href="lib/uikit/css/components/htmleditor.css")
+    script(src="lib/uikit/js/components/htmleditor.js")
+
   body
     block content
-
-//- Optional theme
-//-link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css")
