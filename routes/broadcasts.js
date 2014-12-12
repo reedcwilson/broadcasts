@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 // get by id
 router.get('/:id', function(req, res) {
   if (!req.user) {
-    res.json({ "error": "must be authenticated to access" });
+    res.status(401).send("must be authenticated to access");
   } else {
     broadcast.findById(req.params.id, function(err, broadcast){
       res.cookie('user_id', req.user.id);
@@ -26,7 +26,7 @@ router.get('/:id', function(req, res) {
 // create a new broadcast
 router.post('/create', function(req, res) {
   if (!req.user) {
-    res.json({ "error": "must be authenticated to access" });
+    res.status(401).send("must be authenticated to access");
   } else {
     new broadcast({
       uri: req.body.uri, 

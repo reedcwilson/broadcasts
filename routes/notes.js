@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 // get notes for user and broadcast
 router.get('/:id', function(req, res) {
   if (!req.user) {
-    res.json({ "error": "must be authenticated to access" });
+    res.status(401).send("must be authenticated to access");
   } else {
     note.find({user_id: req.user.id, broadcast_id: req.params.id}, function(err, note){
       if (err || note.length < 1) {
