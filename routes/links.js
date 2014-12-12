@@ -11,8 +11,8 @@ router.get('/', function(req, res) {
 });
 
 // get links for broadcast
-router.get('/for', function(req, res) {
-  link.find({ broadcast_id: req.query.broadcast_id }, function(err, links) {
+router.get('/for/:id', function(req, res) {
+  link.find({ broadcast_id: req.params.id }, function(err, links) {
     res.json({ links: links });
   });
 });
