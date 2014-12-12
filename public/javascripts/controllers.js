@@ -49,9 +49,26 @@ app.controller('DashboardController', function ($scope, $http, $window, ENV) {
     submit(function (result) {
       if (result) {
         loadBroadcasts();
+        $('.new-broadcast-form').slideUp(250, function() {
+          $('.showFormBtn').show(200);
+        });
       } else {
         console.log("submitting the form failed");
       }
+    });
+  };
+
+  // opens the create broadcast form
+  $scope.createForm.show = function(item, event) {
+    $('.showFormBtn').hide(200, function() {
+      $('.new-broadcast-form').slideDown(250);
+    });
+  };
+
+  // closes the create form
+  $scope.createForm.cancelForm = function(item, event) {
+    $('.new-broadcast-form').slideUp(250, function() {
+      $('.showFormBtn').show(200);
     });
   };
 
@@ -102,6 +119,20 @@ app.controller('LinksController', function($scope, $http) {
       .error(function(data, status, headers, config) {
         console.log("could not create link");
       });
+  };
+
+  // show new link form
+  $scope.linkForm.show = function(item, event) {
+    $('.showFormBtn').hide(200, function() {
+      $('.new-link-form').slideDown(250);
+    });
+  };
+
+  // closes the create form
+  $scope.linkForm.cancelForm = function(item, event) {
+    $('.new-link-form').slideUp(250, function() {
+      $('.showFormBtn').show(200);
+    });
   };
 
   // deletes the given link
