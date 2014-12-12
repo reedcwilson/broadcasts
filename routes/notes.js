@@ -13,25 +13,33 @@ router.get('/', function(req, res) {
 
 // get notes for user and broadcast
 router.get('/:id', function(req, res) {
-  note.find({user_id: req.user.id, broadcast_id: req.params.id}, function(err, note){
-    if (err || note.length < 1) {
-      res.json({ "error": err });
-    } else {
-      res.json(note[0]);
-    }
-  });
+  if (!req.user) {
+    res.json({ "error": "must be authenticated to access" });
+  } else {
+    note.find({user_id: req.user.id, broadcast_id: req.params.id}, function(err, note){
+      if (err || note.length < 1) {
+        res.json({ "error": err });
+      } else {
+        res.json(note[0]);
+      }
+    });
+  }
 });
 
 // create a new note
 router.post('/create', function(req, res) {
-  new note({
-    content: req.body.content, 
-    user_id: req.user.id,
-    last_update: Date.now(), 
-    broadcast_id: req.body.broadcast_id
-  }).save(function(err, l, count){
-    res.json({ success: "True", id: l._id });
-  });
+  if (!req.user) {
+    res.status(401).send("must be authenticated to access");
+  } else {
+    new note({
+      content: req.body.content, 
+      user_id: req.user.id,
+      last_update: Date.now(), 
+      broadcast_id: req.body.broadcast_id
+    }).save(function(err, l, count){
+      res.json({ success: "True", id: l._id });
+    });
+  }
 });
 
 // delete note

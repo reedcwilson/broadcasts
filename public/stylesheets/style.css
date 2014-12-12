@@ -1,14 +1,11 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-a {
-  color: #00b7ff;
-}
 .layout-logo {
   height: 200px;
   width: auto;
 }
-#hidden-note {
+.main-logo {
+  height: 500px;
+  width: auto;
+}
+#broadcast_id {
   display: none;
 }

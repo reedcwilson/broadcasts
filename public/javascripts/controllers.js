@@ -18,9 +18,12 @@ app.controller('DashboardController', function ($scope, $http, $window, ENV) {
     // https://www.youtube.com/watch?v=3qkbtPyUI08 -- old
     // https://www.youtube.com/embed/3qkbtPyUI08 -- new
     var new_uri = $scope.createForm.uri.replace(/watch/g, "embed").replace(/\?v=/g, "/");
+    if (!new_uri.match(/^http[s]?:\/\/?/g)) {
+      new_uri = 'http://' + new_uri;
+    }
     var dataObject = {
       name: $scope.createForm.name,
-      uri: $scope.createForm.uri
+      uri: new_uri
     };
     $http.post("/broadcasts/create", dataObject, {})
       .success(function(data, status, headers, config) {
@@ -64,10 +67,11 @@ app.controller('DashboardController', function ($scope, $http, $window, ENV) {
   };
 });
 
-app.controller('LinksController', function($scope, $http, $cookies) {
+app.controller('LinksController', function($scope, $http) {
   var loadLinks = function() {
-    $http.get('/links/for/' + $cookies.broadcast_id)
+    $http.get('/links/for/' + $('#broadcast_id').text())
       .success(function(data) {
+        console.log(data);
         $scope.links = data.links;
     });
   }
@@ -77,8 +81,7 @@ app.controller('LinksController', function($scope, $http, $cookies) {
     uri: '',
     time: ''
   };
-  console.log($cookies.broadcast_id);
-  var b_id = $cookies.broadcast_id;
+  var b_id = $('#broadcast_id').text();
   $scope.linkForm.create = function(item, event) {
     // www.youtube.com/watch?v=3qkbtPyUI08 -- old
     // http://www.youtube.com/embed/3qkbtPyUI08 -- new
@@ -103,7 +106,6 @@ app.controller('LinksController', function($scope, $http, $cookies) {
 
   // deletes the given link
   $scope.delete = function(id) {
-    console.log('deleting');
     $http.post("/links/delete/" + id, {}, {})
       .success(function(data, status, headers, config) {
         loadLinks();
@@ -111,9 +113,6 @@ app.controller('LinksController', function($scope, $http, $cookies) {
       .error(function(data, status, headers, config) {
         console.log("deleting the link failed");
       });
-  };
-  $scope.test = function(id) {
-    console.log(id);
   };
 });
 
@@ -125,7 +124,7 @@ app.controller('VideoController', function($scope, $http) {
 });
 
 // TODO: how to get the broadcast id
-app.controller('NotesController', function($scope, $http, $cookies) {
+app.controller('NotesController', function($scope, $http) {
   // the html editor
   var editor = $('.CodeMirror')[0].CodeMirror;
 
@@ -135,18 +134,16 @@ app.controller('NotesController', function($scope, $http, $cookies) {
   setInterval(function() {
     var dataObject = {
       content: editor.getValue(),
-      broadcast_id: $cookies.broadcast_id
+      broadcast_id: $('#broadcast_id').text()
     };
     $http.post("/notes/update/" + $scope.note._id, dataObject, {})
-      .success(function(data, status, headers, config) {
-        console.log('saved successfully');
-      }).error(function(data, status, headers, config) {
+      .error(function(data, status, headers, config) {
         console.log('failed to save');
       });
   }, 5000);
 
   // get notes for user and broadcast
-  $http.get('/notes/' + $cookies.broadcast_id)
+  $http.get('/notes/' + $("#broadcast_id").text())
     .success(function(data) {
       $scope.note = data;
       editor.setValue(data.content);

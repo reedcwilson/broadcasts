@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var broadcast = mongoose.model('broadcast');
+var note = mongoose.model('note');
 var express = require('express');
 var router = express.Router();
 
@@ -12,23 +13,38 @@ router.get('/', function(req, res) {
 
 // get by id
 router.get('/:id', function(req, res) {
-  broadcast.findById(req.params.id, function(err, broadcast){
-    res.cookie('broadcast_id', req.params.id);
-    res.cookie('user_id', req.user.id);
-    res.json(broadcast);
-  });
+  if (!req.user) {
+    res.json({ "error": "must be authenticated to access" });
+  } else {
+    broadcast.findById(req.params.id, function(err, broadcast){
+      res.cookie('user_id', req.user.id);
+      res.json(broadcast);
+    });
+  }
 });
 
 // create a new broadcast
 router.post('/create', function(req, res) {
-  new broadcast({
-    uri: req.body.uri, 
-    name: req.body.name,
-    user_id: req.user.id,
-    last_update: Date.now()
-  }).save(function(err, l, count){
-    res.json({ success: "True", id: l._id });
-  });
+  if (!req.user) {
+    res.json({ "error": "must be authenticated to access" });
+  } else {
+    new broadcast({
+      uri: req.body.uri, 
+      name: req.body.name,
+      user_id: req.user.id,
+      last_update: Date.now()
+    }).save(function(err, l, count){
+      // create a note when a broadcast is created
+      new note({
+        content: '# ' + req.body.name + '\n',
+          user_id: req.user.id,
+          last_update: Date.now(), 
+          broadcast_id: l._id
+      }).save(function(err, n, count) {
+        res.json({ success: "True", id: l._id });
+      });
+    });
+  }
 });
 
 // delete broadcast

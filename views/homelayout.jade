@@ -1,0 +1,30 @@
+doctype html
+html(ng-app='broadcastsApp')
+  head
+    title= title
+
+    // uikit
+    link(rel='stylesheet', href='/lib/uikit/css/uikit.min.css')
+    
+    // local
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    // jquery
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+
+    // uikit
+    script(src="/lib/uikit/js/uikit.min.js")
+
+    // angular
+    script(src="/lib/angular/angular.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.min.js")
+
+    // local
+    script(src="/javascripts/config.js")
+    script(src="/javascripts/controllers.js")
+    script(src="/javascripts/local.js")
+
+  body
+    block content

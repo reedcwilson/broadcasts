@@ -41,12 +41,13 @@ html(ng-app='broadcastsApp')
     // local
     script(src="/javascripts/config.js")
     script(src="/javascripts/controllers.js")
-    script(src="/javascripts/local.js")
 
   body
-    img(class="layout-logo", src="/images/broadcasts.png")
-    - if (!everyauth.loggedIn)
-      a(class="uk-button", href="/auth/google") Sign in
-    - else
-      a(class="uk-button", href="")=everyauth.user.name 
-    block content
+    div(class='uk-navbar')
+      a(class='uk-navbar-brand') Broadcasts
+      div(class="uk-navbar-content")
+        a(class="uk-button", href="/dashboard") Dashboard
+      div(class="uk-navbar-content uk-navbar-flip uk-hidden-small")
+        a(class="uk-button", href="#")=everyauth.user.name
+    div(class='uk-grid')
+      block content

@@ -19,17 +19,21 @@ router.get('/for/:id', function(req, res) {
 
 // create a new link
 router.post('/create', function(req, res) {
-  new link({
-    // TODO: if user is not logged in, don't allow
-    uri: req.body.uri, 
-    time : req.body.time,
-    user_id: req.user.id,
-    broadcast_id: req.body.broadcast_id,
-    description: req.body.description,
-    time: req.body.time
-  }).save(function(err, l, count){
-    res.json({ success: "True", id: l._id });
-  });
+  if (!req.user) {
+    res.status(401).send("must be authenticated to access");
+  } else {
+    new link({
+      // TODO: if user is not logged in, don't allow
+      uri: req.body.uri, 
+      time : req.body.time,
+      user_id: req.user.id,
+      broadcast_id: req.body.broadcast_id,
+      description: req.body.description,
+      time: req.body.time
+    }).save(function(err, l, count){
+      res.json({ success: "True", id: l._id });
+    });
+  }
 });
 
 // delete link
