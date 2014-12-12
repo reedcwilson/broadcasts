@@ -115,6 +115,9 @@ app.controller('LinksController', function($scope, $http) {
     $http.post("/links/create", data, {})
       .success(function(data, status, headers, config) {
         loadLinks();
+        $('.new-link-form').slideUp(250, function() {
+          $('.showFormBtn').show(200);
+        });
       })
       .error(function(data, status, headers, config) {
         console.log("could not create link");

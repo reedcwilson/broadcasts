@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div(class='uk-grid-3-10 uk-container')
+  div(class='uk-grid-3-10')
     div(ng-controller="LinksController")
       h2(class='links-header') Links
       button(class='uk-button showFormBtn uk-text-bold', ng-click='linkForm.show()') +
@@ -22,7 +22,7 @@ block content
             td(class='') {{ link.time }}
             td(class=''): button(class="uk-button uk-button-danger", ng-click="delete(link._id)") X
 
-  div(class='uk-grid-7-10 uk-container')
+  div(class='uk-grid-7-10')
     div(ng-controller="VideoController")
       //-iframe(width="1024", height="600", frameborder="0", allowfullscreen, src="{{ video.uri | trusted}}")
       iframe(width="900", height="500", frameborder="0", allowfullscreen, src=broadcast.uri)
