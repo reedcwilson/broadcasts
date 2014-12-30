@@ -40,6 +40,6 @@ module.exports = function(env) {
     mongoose.connect('mongodb://localhost/broadcasts' );
   }
   else {
-    mongoose.connect('mongodb://nodejitsu:ad15d053df09b2a67eafb99ab581c1e6@troup.mongohq.com:10033/nodejitsudb1045838899' );
+    mongoose.connect('mongodb://heroku_app32922839:2be4ib6j2tc5s7n9otlhvncjf9@ds029831.mongolab.com:29831/heroku_app32922839' );
   }
 };
